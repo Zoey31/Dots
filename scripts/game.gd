@@ -7,6 +7,8 @@ extends Node2D
 @onready var debug_texture = $TextureRect
 @onready var difficulty_factor = 0
 
+@onready var UI = $"GAME OVER"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_get_spawn_area()
@@ -25,6 +27,9 @@ func _zoom_out(delta):
 func _zoom_out_camera(delta):
 	# TODO check setzoom
 	camera.zoom -= 0.05 * camera.zoom * delta
+	
+func _scale_UI():
+	UI.scale *= 0.5
 
 func _get_spawn_area():
 	spawn_area = Vector2(
