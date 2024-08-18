@@ -8,6 +8,8 @@ extends Node2D
 @onready var game = $".."
 @onready var _debug_factor = 1
 
+@onready var score_counter = $"../Score"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -49,6 +51,7 @@ func _spawn_dot():
 	d.max_level = game.difficulty_factor
 	print("Max level for dot: ", game.difficulty_factor, " for zoom ", game.camera.zoom.x)
 	add_child(d)
+	score_counter.add_weights(d.get_weight())
 	#for level in d.levels:
 		#level.color *= _debug_factor
 	#_debug_factor -= 0.05

@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var camera = $Camera2D
-#@onready var viewport
+@onready var score = $Score
+
 @onready var spawn_area
 @onready var debug_texture = $TextureRect
 @onready var difficulty_factor = 0
@@ -9,7 +10,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_get_spawn_area()
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -17,6 +17,7 @@ func _process(delta):
 	_zoom_out(delta)
 
 func _zoom_out(delta):
+	_check_wincon()
 	_zoom_out_camera(delta)
 	_expand_range(delta)
 	_make_game_harder()
@@ -33,6 +34,13 @@ func _get_spawn_area():
 
 func _expand_range(delta):
 	_get_spawn_area()
+
+func _check_wincon():
+	if score.weight >= 70:
+		game_over()
+		
+func game_over():
+	print("GAME OVER!!!!!!!!!")
 
 func _make_game_harder():
 	var result = 0

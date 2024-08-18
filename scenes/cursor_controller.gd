@@ -3,6 +3,8 @@ extends CollisionShape2D
 @onready var colition_list = Array()
 @onready var blocked = false
 
+@onready var score_counter = $"../../Score"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -63,6 +65,7 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		var dot_area = colition_list[-1]
 		var dot = dot_area.get_node("../..")
 		var dot_clone = dot.duplicate()
+		score_counter.add_weights(-dot.get_weight())
 		dot.reduce_level()
 		var level = dot.curr_level
 		dot.queue_free()
@@ -70,4 +73,4 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 			return
 		dot_clone.curr_level = level
 		$"../../Spawner".add_child(dot_clone)
-
+		score_counter.add_weights(dot_clone.get_weight())
