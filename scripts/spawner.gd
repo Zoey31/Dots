@@ -47,9 +47,9 @@ func _spawn_dot():
 	#print(pos)
 	d.position = pos
 	add_child(d)
-	for level in d.levels:
-		level.color *= _debug_factor
-	_debug_factor -= 0.05
+	#for level in d.levels:
+		#level.color *= _debug_factor
+	#_debug_factor -= 0.05
 
 #func _spawn_dot():
 	

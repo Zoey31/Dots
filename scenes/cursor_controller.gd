@@ -14,6 +14,7 @@ func _process(delta):
 
 func _on_area_2d_area_entered(area):
 	blocked = false
+	print("on enter ", area)
 	if area == self:
 		return
 
@@ -25,6 +26,7 @@ func _on_area_2d_area_entered(area):
 
 func _on_area_2d_area_exited(area):
 	blocked = false
+	print("on exit ", area)
 	if area == self:
 		return
 

@@ -16,6 +16,7 @@ func _ready():
 	if curr_level == -1:
 		curr_level = 2
 	_set_default_levels()
+	_set_characteristics(curr_level)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
