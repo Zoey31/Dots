@@ -46,6 +46,8 @@ func _spawn_dot():
 	var pos = get_spawn_pos()
 	#print(pos)
 	d.position = pos
+	d.max_level = game.difficulty_factor
+	print("Max level for dot: ", game.difficulty_factor, " for zoom ", game.camera.zoom.x)
 	add_child(d)
 	#for level in d.levels:
 		#level.color *= _debug_factor
