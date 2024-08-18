@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbt7eteoarts0"]
+
+[ext_resource type="Script" path="res://scripts/dot.gd" id="1_3382t"]
+[ext_resource type="Texture2D" uid="uid://o7jnb02ey5uc" path="res://sprites/Ellipse 1.png" id="2_ffp14"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7qncs"]
+radius = 516.624
+
+[node name="Dot" type="Node2D"]
+script = ExtResource("1_3382t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_ffp14")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("CircleShape2D_7qncs")
