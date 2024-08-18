@@ -69,8 +69,11 @@ func _on_area_2d_input_event(viewport, event, shape_idx):
 		dot.reduce_level()
 		var level = dot.curr_level
 		dot.queue_free()
+		score_counter.add_score()
+		score_counter.update()
 		if level < 0:
 			return
 		dot_clone.curr_level = level
 		$"../../Spawner".add_child(dot_clone)
 		score_counter.add_weights(dot_clone.get_weight())
+		

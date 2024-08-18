@@ -8,6 +8,8 @@ extends Node2D
 @onready var difficulty_factor = 0
 
 @onready var UI = $"GAME OVER"
+@onready var score_UI = $"SCORE"
+@onready var weight_UI = $"WEIGHT"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,17 +24,25 @@ func _process(delta):
 func _zoom_out(delta):
 	_check_wincon()
 	_zoom_out_camera(delta)
-	_scale_UI(delta)
 	_expand_range(delta)
 	_make_game_harder()
+	_scale_UI()
 
 func _zoom_out_camera(delta):
 	# TODO check setzoom
-	camera.zoom -= 0.05 * camera.zoom * delta
+	camera.zoom -= camera.zoom * 0.05 * delta
+
 	
-func _scale_UI(delta):
+func _scale_UI():
 	UI.scale = Vector2(1, 1) / camera.zoom
 	UI.global_position = Vector2(-UI.scale.x * UI.size.x/2, -spawn_area.y/2)
+	
+	score_UI.scale = Vector2(1, 1) / camera.zoom
+	score_UI.global_position = Vector2(-spawn_area.x/2, -spawn_area.y/2)
+	
+	weight_UI.scale = Vector2(1, 1) / camera.zoom
+	weight_UI.global_position = Vector2(spawn_area.x/2 - weight_UI.scale.x * weight_UI.size.x, -spawn_area.y/2)
+	
 
 func _get_spawn_area():
 	spawn_area = Vector2(

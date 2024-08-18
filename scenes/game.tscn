@@ -29,6 +29,46 @@ height = 12.0
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_v3i2h")
 
+[node name="WEIGHT" type="RichTextLabel" parent="."]
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 138.0
+offset_top = -325.0
+offset_right = 578.0
+offset_bottom = -213.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontFile_rert6")
+theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/bold_font_size = 80
+bbcode_enabled = true
+text = "[right][b][font size=80][color=RED]WEIGHT[/color][/font][/b][/right]"
+
+[node name="SCORE" type="RichTextLabel" parent="."]
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -575.0
+offset_top = -324.0
+offset_right = -135.0
+offset_bottom = -212.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontFile_rert6")
+theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/bold_font_size = 80
+bbcode_enabled = true
+text = "[b][font size=80][color=GREEN]SCORE[/color][/font][/b]"
+
 [node name="GAME OVER" type="RichTextLabel" parent="."]
 z_index = 10
 anchors_preset = 8

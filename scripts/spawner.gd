@@ -52,6 +52,7 @@ func _spawn_dot():
 	print("Max level for dot: ", game.difficulty_factor, " for zoom ", game.camera.zoom.x)
 	add_child(d)
 	score_counter.add_weights(d.get_weight())
+	score_counter.update()
 	#for level in d.levels:
 		#level.color *= _debug_factor
 	#_debug_factor -= 0.05
