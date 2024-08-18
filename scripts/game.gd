@@ -11,6 +11,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	UI.visible = false
 	_get_spawn_area()
 
 
@@ -21,6 +22,7 @@ func _process(delta):
 func _zoom_out(delta):
 	_check_wincon()
 	_zoom_out_camera(delta)
+	_scale_UI(delta)
 	_expand_range(delta)
 	_make_game_harder()
 
@@ -28,8 +30,9 @@ func _zoom_out_camera(delta):
 	# TODO check setzoom
 	camera.zoom -= 0.05 * camera.zoom * delta
 	
-func _scale_UI():
-	UI.scale *= 0.5
+func _scale_UI(delta):
+	UI.scale = Vector2(1, 1) / camera.zoom
+	UI.global_position = Vector2(-UI.scale.x * UI.size.x/2, -spawn_area.y/2)
 
 func _get_spawn_area():
 	spawn_area = Vector2(
@@ -45,7 +48,8 @@ func _check_wincon():
 		game_over()
 		
 func game_over():
-	print("GAME OVER!!!!!!!!!")
+	UI.visible = true
+	get_tree().paused = true
 
 func _make_game_harder():
 	var result = 0
