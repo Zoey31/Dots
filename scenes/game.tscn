@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://tvx7gel4r7nr"]
+[gd_scene load_steps=9 format=3 uid="uid://tvx7gel4r7nr"]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_ll3oq"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_v3i2h"]
 [ext_resource type="Texture2D" uid="uid://cme7gmlloqjak" path="res://icon.svg" id="3_gi0uq"]
+[ext_resource type="Texture2D" uid="uid://cnrha04j1170i" path="res://sprites/bg.png" id="3_j4ldb"]
 [ext_resource type="Script" path="res://scenes/cursor_controller.gd" id="4_y2ata"]
 [ext_resource type="Script" path="res://scripts/score.gd" id="5_as6do"]
 
@@ -30,6 +31,7 @@ height = 12.0
 script = ExtResource("1_v3i2h")
 
 [node name="WEIGHT" type="RichTextLabel" parent="."]
+visible = false
 z_index = 10
 anchors_preset = 8
 anchor_left = 0.5
@@ -56,10 +58,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -575.0
-offset_top = -324.0
-offset_right = -135.0
-offset_bottom = -212.0
+offset_left = -577.0
+offset_top = -323.0
+offset_right = 575.0
+offset_bottom = -211.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_selected_color = Color(1, 0, 0, 1)
@@ -88,6 +90,7 @@ bbcode_enabled = true
 text = "[center][b][color=RED]GAME OVER[/color][/b][/center]"
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -102,8 +105,21 @@ grow_vertical = 2
 texture = ExtResource("3_gi0uq")
 
 [node name="Background" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+texture_repeat = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1024.0
+offset_top = -1024.0
+offset_right = 1024.0
+offset_bottom = 1024.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j4ldb")
+stretch_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -127,6 +143,42 @@ texture = ExtResource("3_gi0uq")
 
 [node name="Score" type="Node2D" parent="GameArea"]
 script = ExtResource("5_as6do")
+
+[node name="WeightBar2" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -558.0
+offset_top = -318.0
+offset_right = -496.0
+offset_bottom = 326.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 70.0
+step = 1.0
+value = 30.0
+fill_mode = 3
+
+[node name="WeightBar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 503.0
+offset_top = -322.0
+offset_right = 565.0
+offset_bottom = 322.0
+grow_horizontal = 0
+grow_vertical = 2
+max_value = 70.0
+step = 1.0
+value = 30.0
+fill_mode = 3
 
 [connection signal="timeout" from="GameArea/Spawner/Timer" to="GameArea/Spawner" method="_on_timer_timeout"]
 [connection signal="area_entered" from="GameArea/Area2D" to="GameArea/Area2D/Cursor" method="_on_area_2d_area_entered"]

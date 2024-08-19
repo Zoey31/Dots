@@ -35,7 +35,10 @@ func _set_default_levels():
 		_create_level(Color.ORANGE, 4, Vector2(0.4, 0.4), 3),
 		_create_level(Color.RED, 8, Vector2(0.6, 0.6), 4),
 		_create_level(Color.DARK_VIOLET, 10, Vector2(0.8, 0.8), 5),
-		_create_level(Color.DARK_MAGENTA, 10, Vector2(1, 1), 6)
+		_create_level(Color.DARK_MAGENTA, 20, Vector2(1, 1), 6),
+		_create_level(Color.DARK_GOLDENROD, 30, Vector2(1.2, 1.2), 7),
+		_create_level(Color.DARK_ORANGE, 40, Vector2(1.5, 1.5), 8),
+		_create_level(Color.DARK_SLATE_BLUE, 50, Vector2(1.8, 1.8), 9),
 	])
 	
 func _set_characteristics(level):

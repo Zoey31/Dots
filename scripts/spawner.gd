@@ -11,6 +11,8 @@ extends Node2D
 
 @onready var score_counter = $"../Score"
 
+@onready var bg = $"../../Background"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -31,8 +33,11 @@ func get_spawn_pos():
 		#pos_x += spawn_offset
 	var pos_y = randf_range(-max_size_y / 2 * 0.5, max_size_y / 2 * 0.5)
 	
-	game.debug_texture.size = Vector2(max_size_x * 0.8, max_size_y * 0.8) * game_area.scale
-	game.debug_texture.position = Vector2(-max_size_x / 2 * 0.8, -max_size_y / 2 * 0.8) * game_area.scale
+	#bg.size = Vector2(bg.size.x * 0.8, bg.size.y * 0.8) * game_area.scale
+	#bg.scale -= Vector2(Vector2(bg.size.x * 0.8, bg.size.y * 0.8) * game_area.scale).normalized()
+	#bg.position = Vector2(-max_size_x / 2 * 0.8, -max_size_y / 2 * 0.8) * game_area.scale
+	
+	print("BG SIZE ", bg.size, " BG SCALE ", bg.scale, " GAME SCALE ", game_area.scale, " SIZE CALC ", Vector2(bg.size.x * 0.8, bg.size.y * 0.8) * game_area.scale)
 	
 	print(
 		" X ", 

@@ -4,7 +4,7 @@ extends CollisionShape2D
 @onready var blocked = false
 
 @onready var score_counter = $"../../Score"
-
+#@onready var pop_sound = preload("res://sounds/Pop sound 13.wav")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

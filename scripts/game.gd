@@ -11,6 +11,7 @@ extends Node2D
 @onready var UI = $"GAME OVER"
 @onready var score_UI = $"SCORE"
 @onready var weight_UI = $"WEIGHT"
+@onready var bg = $Background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -48,6 +49,10 @@ func _scale_UI():
 	weight_UI.scale = Vector2(1, 1) / camera.zoom
 	weight_UI.global_position = Vector2(vewportSize.x/2 - weight_UI.scale.x * weight_UI.size.x, -vewportSize.y/2)
 	
+	#bg.scale = Vector2(game_area.scale.x, game_area.scale.y)
+	#bg.global_position = Vector2(-vewportSize.x/2, -vewportSize.y/2)
+	#print("CALC ", Vector2(1.0, 1.0) / camera.zoom, "BG ", bg.scale)
+	
 
 func _get_spawn_area():
 	spawn_area = Vector2(
@@ -70,9 +75,19 @@ func game_over():
 func _make_game_harder():
 	var result = 0
 	if game_area.scale.x < 0.8:
+		result = 1
+	if game_area.scale.x < 0.65:
 		result = 2
 	if game_area.scale.x < 0.5:
-		result = 4
+		result = 3
 	if game_area.scale.x < 0.3:
+		result = 4
+	if game_area.scale.x < 0.2:
 		result = 5
+	if game_area.scale.x < 0.1:
+		result = 6
+	if game_area.scale.x < 0.05:
+		result = 7
+	if game_area.scale.x < 0.01:
+		result = 8
 	difficulty_factor = result
