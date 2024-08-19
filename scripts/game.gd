@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var camera = $Camera2D
-@onready var score = $Score
+@onready var game_area: Node2D = $GameArea
+@onready var score = $GameArea/Score
 
 @onready var spawn_area
 @onready var debug_texture = $TextureRect
@@ -30,24 +31,28 @@ func _zoom_out(delta):
 
 func _zoom_out_camera(delta):
 	# TODO check setzoom
-	camera.zoom -= camera.zoom * 0.05 * delta
+	#camera.zoom -= camera.zoom * 0.05 * delta
+
+	game_area.scale -= game_area.scale * 0.05 * delta
 
 	
 func _scale_UI():
+	var viewportRect = camera.get_viewport_rect()
+	var vewportSize = Vector2(viewportRect.size[0], viewportRect.size[1])
 	UI.scale = Vector2(1, 1) / camera.zoom
-	UI.global_position = Vector2(-UI.scale.x * UI.size.x/2, -spawn_area.y/2)
+	UI.global_position = Vector2(-UI.scale.x * UI.size.x/2, -vewportSize.y/2)
 	
 	score_UI.scale = Vector2(1, 1) / camera.zoom
-	score_UI.global_position = Vector2(-spawn_area.x/2, -spawn_area.y/2)
+	score_UI.global_position = Vector2(-vewportSize.x/2, -vewportSize.y/2)
 	
 	weight_UI.scale = Vector2(1, 1) / camera.zoom
-	weight_UI.global_position = Vector2(spawn_area.x/2 - weight_UI.scale.x * weight_UI.size.x, -spawn_area.y/2)
+	weight_UI.global_position = Vector2(vewportSize.x/2 - weight_UI.scale.x * weight_UI.size.x, -vewportSize.y/2)
 	
 
 func _get_spawn_area():
 	spawn_area = Vector2(
-		camera.get_viewport_rect().size[0] / camera.zoom.x,
-		camera.get_viewport_rect().size[1] / camera.zoom.y
+		camera.get_viewport_rect().size[0] / game_area.scale.x,
+		camera.get_viewport_rect().size[1] / game_area.scale.y
 		)
 
 func _expand_range(delta):
@@ -59,14 +64,15 @@ func _check_wincon():
 		
 func game_over():
 	UI.visible = true
+	score.update()
 	get_tree().paused = true
 
 func _make_game_harder():
 	var result = 0
-	if camera.zoom.x < 0.8:
+	if game_area.scale.x < 0.8:
 		result = 2
-	if camera.zoom.x < 0.5:
+	if game_area.scale.x < 0.5:
 		result = 4
-	if camera.zoom.x < 0.3:
+	if game_area.scale.x < 0.3:
 		result = 5
 	difficulty_factor = result

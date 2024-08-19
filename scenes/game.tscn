@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkeyud6kufkrq"]
+[gd_scene load_steps=8 format=3 uid="uid://tvx7gel4r7nr"]
 
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="1_ll3oq"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_v3i2h"]
@@ -105,28 +105,30 @@ texture = ExtResource("3_gi0uq")
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Spawner" type="Node2D" parent="."]
-script = ExtResource("1_ll3oq")
-
-[node name="Timer" type="Timer" parent="Spawner"]
-autostart = true
-
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="GameArea" type="Node2D" parent="."]
 
-[node name="Cursor" type="CollisionShape2D" parent="Area2D"]
+[node name="Spawner" type="Node2D" parent="GameArea"]
+script = ExtResource("1_ll3oq")
+
+[node name="Timer" type="Timer" parent="GameArea/Spawner"]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="GameArea"]
+
+[node name="Cursor" type="CollisionShape2D" parent="GameArea/Area2D"]
 shape = SubResource("CapsuleShape2D_4ngpl")
 script = ExtResource("4_y2ata")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D/Cursor"]
+[node name="Sprite2D" type="Sprite2D" parent="GameArea/Area2D/Cursor"]
 visible = false
 texture = ExtResource("3_gi0uq")
 
-[node name="Score" type="Node2D" parent="."]
+[node name="Score" type="Node2D" parent="GameArea"]
 script = ExtResource("5_as6do")
 
-[connection signal="timeout" from="Spawner/Timer" to="Spawner" method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area2D" to="Area2D/Cursor" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="Area2D/Cursor" method="_on_area_2d_area_exited"]
-[connection signal="input_event" from="Area2D" to="Area2D/Cursor" method="_on_area_2d_input_event"]
+[connection signal="timeout" from="GameArea/Spawner/Timer" to="GameArea/Spawner" method="_on_timer_timeout"]
+[connection signal="area_entered" from="GameArea/Area2D" to="GameArea/Area2D/Cursor" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="GameArea/Area2D" to="GameArea/Area2D/Cursor" method="_on_area_2d_area_exited"]
+[connection signal="input_event" from="GameArea/Area2D" to="GameArea/Area2D/Cursor" method="_on_area_2d_input_event"]

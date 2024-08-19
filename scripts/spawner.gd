@@ -5,7 +5,8 @@ extends Node2D
 @onready var dot = preload("res://scenes/dot.tscn")
 @onready var spawn_offset = 100
 
-@onready var game = $".."
+@onready var game = $"../.."
+@onready var game_area = $".."
 @onready var _debug_factor = 1
 
 @onready var score_counter = $"../Score"
@@ -30,8 +31,8 @@ func get_spawn_pos():
 		#pos_x += spawn_offset
 	var pos_y = randf_range(-max_size_y / 2 * 0.5, max_size_y / 2 * 0.5)
 	
-	game.debug_texture.size = Vector2(max_size_x * 0.8, max_size_y * 0.8)
-	game.debug_texture.position = Vector2(-max_size_x / 2 * 0.8, -max_size_y / 2 * 0.8)
+	game.debug_texture.size = Vector2(max_size_x * 0.8, max_size_y * 0.8) * game_area.scale
+	game.debug_texture.position = Vector2(-max_size_x / 2 * 0.8, -max_size_y / 2 * 0.8) * game_area.scale
 	
 	print(
 		" X ", 

@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var weight = 0
 @onready var score = 0
-@onready var score_UI = $"../SCORE"
-@onready var weight_UI = $"../WEIGHT"
+@onready var score_UI = $"../../SCORE"
+@onready var weight_UI = $"../../WEIGHT"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
